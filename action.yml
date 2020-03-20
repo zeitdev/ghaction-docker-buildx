@@ -12,7 +12,7 @@ inputs:
     default: 'latest'
   image:
     description: 'Buildx image to use'
-    default: 'buildx-stable-1'
+    default: 'moby/buildkit:buildx-stable-1'
 
 outputs:
   platforms:
