@@ -10,6 +10,9 @@ inputs:
   version:
     description: 'Buildx version. Example: v0.3.0'
     default: 'latest'
+  image:
+    description: 'Buildx image to use'
+    default: 'buildx-stable-1'
 
 outputs:
   platforms:

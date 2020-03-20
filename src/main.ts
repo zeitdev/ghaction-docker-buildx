@@ -13,6 +13,7 @@ async function run() {
     }
 
     const version = core.getInput('version') || 'latest';
+    const image = core.getInput('image');
     await installer.getBuildx(version);
 
     console.log('🐳 Docker info...');
@@ -25,7 +26,7 @@ async function run() {
     await exec.exec('docker', ['run', '--rm', '--privileged', 'multiarch/qemu-user-static', '--reset', '-p', 'yes']);
 
     console.log('🔨 Creating a new builder instance...');
-    await exec.exec('docker', ['buildx', 'create', '--name', 'builder', '--driver', 'docker-container', '--use']);
+    await exec.exec('docker', ['buildx', 'create', '--name', 'builder', '--driver', 'docker-container', '--use', '--driver-opt', `image=${image}`]);
 
     console.log('🏃 Booting builder...');
     await exec.exec('docker', ['buildx', 'inspect', '--bootstrap']);
